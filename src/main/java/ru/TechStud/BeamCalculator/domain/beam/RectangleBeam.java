@@ -1,32 +1,32 @@
-package ru.TechStud.BeamCalculator.Core.Beam;
+package ru.TechStud.BeamCalculator.domain.beam;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.stereotype.Component;
 
-import static java.lang.Math.PI;
 import static java.lang.Math.pow;
 
 @Getter
 @Setter
 @Component
 @NoArgsConstructor
-public class CircleBeam extends Beam {
+public class RectangleBeam extends Beam {
 
-    private double radius;
+    private double height;
+    private double width;
 
-    public CircleBeam(double radius)    {
+    public RectangleBeam(double height, double width)   {
         this.setArea(
-                PI * pow(radius, 2)
+                width * height
         );
 
         this.setInertiaX(
-                PI * pow(2 * radius, 4)
+                width * pow(height, 2) / 32
         );
 
         this.setInertiaY(
-                PI * pow(2 * radius, 4)
+                height * pow(width, 2) / 32
         );
     }
 }
