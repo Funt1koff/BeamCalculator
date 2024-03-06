@@ -1,11 +1,14 @@
 package ru.TechStud.BeamCalculator.domain.load;
 
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
-import lombok.Setter;
+public class Force extends LoadConcentrated {
 
-@RequiredArgsConstructor
-@Getter
-@Setter
-public abstract class Force extends Load {
+    public Force()  {
+        super.setIDENTIFIER(FORCE);
+    }
+
+    public Force(Double coordinate, Double value)   {
+        super.setCoordinate(coordinate);
+        super.setValue(value);
+        super.setIDENTIFIER(FORCE);
+    }
 }

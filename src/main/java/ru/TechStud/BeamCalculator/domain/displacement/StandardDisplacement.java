@@ -1,14 +1,14 @@
 package ru.TechStud.BeamCalculator.domain.displacement;
 
-import lombok.*;
+import lombok.Data;
 
-@Getter
-@Setter
-public class StandardDisplacement extends Displacement {
-    boolean isMovable;
+@Data
+public class StandardDisplacement implements Displacement  {
 
-    public StandardDisplacement(double coordinate, boolean isMovable) {
-        super(coordinate);
-        this.isMovable = isMovable;
+    private Integer IDENTIFIER;
+    private Double coordinate;
+
+    public StandardDisplacement(Double coordinate)  {
+        IDENTIFIER = STANDARD;
     }
 }

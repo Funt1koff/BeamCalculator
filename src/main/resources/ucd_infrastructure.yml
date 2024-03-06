@@ -1,0 +1,101 @@
+version: '3.7'
+
+networks:
+  tvnet:
+    #name: mntrnet
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: 192.168.25.0/24 # from 192.168.25.2 to 192.168.25.254
+    driver_opts:
+      com.docker.network.bridge.name: docker-br-tvnet
+
+services:
+  minio:
+    image: minio/minio:RELEASE.2021-06-17T00-10-46Z
+    container_name: ucd_s3
+    networks:
+      tvnet:
+        ipv4_address: 192.168.25.2
+    hostname: s3.itest.ucd
+    ports: # localhost:container
+      - "9000:9000"
+    environment:
+      - "MINIO_ACCESS_KEY=AKIAR35U4IGPPJTOIT52"
+      - "MINIO_SECRET_KEY=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"
+    entrypoint: sh
+    command: -c 'mkdir -p /export/ucd-rawdata && /usr/bin/minio server /export'
+
+  ucd_postgres:
+    image: postgres:11.2
+    container_name: ucd_postgres
+    networks:
+      tvnet:
+        ipv4_address: 192.168.25.3
+    hostname: postgres.itest.ucd
+    ports:
+      - "6552:5432"
+    environment:
+      POSTGRES_USER: ucd
+      POSTGRES_PASSWORD: Qwerty111++
+      POSTGRES_DB: ucd
+
+  ucd_zookeeper:
+    image: confluentinc/cp-zookeeper:6.0.1
+    container_name: ucd_zookeeper
+    networks:
+      tvnet:
+        ipv4_address: 192.168.25.4
+    hostname: zoo1.itest.ucd
+    ports:
+      - 2182:2181
+      - 2890:2888
+      - 3890:3888
+      #- "32181:32181"
+    environment:
+      ZOOKEEPER_CLIENT_PORT: 2182
+      ZOOKEEPER_TICK_TIME: 2000
+      ZOOKEEPER_SYNC_LIMIT: 2
+
+  ucd_kafka:
+    image: confluentinc/cp-kafka:6.0.1
+    container_name: ucd_kafka
+    networks:
+      tvnet:
+        ipv4_address: 192.168.25.5
+    hostname: kafka.itest.ucd
+    ports:
+      - "9095:9095"
+    environment:
+      KAFKA_ZOOKEEPER_CONNECT: "192.168.25.4:2182"
+      KAFKA_ADVERTISED_LISTENERS: LISTENER_DOCKER_INTERNAL://kafka.itest.ucd:9096,LISTENER_DOCKER_EXTERNAL://${DOCKER_HOST_IP:-127.0.0.1}:9095
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: LISTENER_DOCKER_INTERNAL:PLAINTEXT,LISTENER_DOCKER_EXTERNAL:PLAINTEXT
+      KAFKA_INTER_BROKER_LISTENER_NAME: LISTENER_DOCKER_INTERNAL
+      #KAFKA_BROKER_ID: 2
+      KAFKA_LOG4J_LOGGERS: "kafka.controller=INFO,kafka.producer.async.DefaultEventHandler=INFO,state.change.logger=INFO"
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: "1"
+      KAFKA_CONFLUENT_TOPIC_REPLICATION_FACTOR: "1"
+      KAFKA_MIN_INSYNC_REPLICAS: 1
+      KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: 1
+      KAFKA_TRANSACTION_STATE_LOG_MIN_ISR: 1
+    depends_on:
+      - ucd_zookeeper
+
+  ucd_kafka_manager:
+    image: provectuslabs/kafka-ui
+    container_name: ucd_kafka_manager
+    networks:
+      tvnet:
+        ipv4_address: 192.168.25.6
+    hostname: kafka-manager.itest.ucd
+    ports:
+      - "8080:8080"
+    restart: always
+    environment:
+      KAFKA_CLUSTERS_0_NAME: ucd_kafka
+      KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS: kafka.itest.ucd:9096
+      KAFKA_CLUSTERS_0_ZOOKEEPER: 192.168.25.4:2182
+    depends_on:
+      - ucd_zookeeper
+      - ucd_kafka

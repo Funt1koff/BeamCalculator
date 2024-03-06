@@ -1,11 +1,19 @@
 package ru.TechStud.BeamCalculator.domain.load;
 
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
-import lombok.Setter;
+public class Moment extends LoadConcentrated    {
 
-@RequiredArgsConstructor
-@Getter
-@Setter
-public abstract class Moment extends Load {
+    public Moment() {
+        super.setIDENTIFIER(MOMENT);
+    }
+
+    public Moment(Double coordinate, Double value)  {
+        super.setCoordinate(coordinate);
+        super.setValue(value);
+        super.setIDENTIFIER(MOMENT);
+    }
+
+    @Override
+    public void setIDENTIFIER(Integer IDENTIFIER)   {
+
+    }
 }

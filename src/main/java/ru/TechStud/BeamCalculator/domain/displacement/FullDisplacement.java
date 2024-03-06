@@ -1,19 +1,21 @@
 package ru.TechStud.BeamCalculator.domain.displacement;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
+import lombok.RequiredArgsConstructor;
 
-@Getter
-@Setter
-public class FullDisplacement extends Displacement {
-    private boolean isLeft;
+@Data
+public class FullDisplacement implements Displacement   {
+
+    private Integer IDENTIFIER;
+    private Boolean isLeft = true;
+    private Double coordinate = 0.0;
+
+    public FullDisplacement()   {
+        IDENTIFIER = FULL;
+    }
 
     public FullDisplacement(boolean isLeft) {
         this.isLeft = isLeft;
-
-        if(isLeft)
-            setCoordinate(0);
-        else
-            setCoordinate(1);
+        IDENTIFIER = FULL;
     }
 }
