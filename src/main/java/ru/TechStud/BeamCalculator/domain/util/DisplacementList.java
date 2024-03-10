@@ -52,6 +52,13 @@ public class DisplacementList {
         return fullDisplacements;
     }
 
+    public Integer getCountDisplacements() {
+        if (displacementContainer.get(STANDARD).isEmpty())
+            return displacementContainer.get(FULL).size();
+        else
+            return displacementContainer.get(STANDARD).size();
+    }
+
     private Integer filterByType(Displacement displacement) {
 
         if (displacement instanceof StandardDisplacement)
