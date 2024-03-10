@@ -1,15 +1,13 @@
 package ru.TechStud.BeamCalculator.domain.load;
 
-import lombok.NoArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 
-import static lombok.AccessLevel.PRIVATE;
+public class DistributedTriangle extends LoadDistributed {
 
-@NoArgsConstructor(access = PRIVATE)
-public class DistributedTriangle  extends LoadDistributed   {
-
+    @Autowired
     public DistributedTriangle(Double valueOnUnitLength,
                                Double coordinateStart,
-                               Double coordinateEnd)    {
+                               Double coordinateEnd) {
         super(valueOnUnitLength, coordinateStart, coordinateEnd);
         super.setIDENTIFIER(DISTRIBUTED_TRIANGLE);
         super.setCoordinateCenterMass(0.666667 * (coordinateEnd - coordinateStart));
@@ -22,7 +20,7 @@ public class DistributedTriangle  extends LoadDistributed   {
     }
 
     @Override
-    public void setValueEquivalent(Double valueEquivalent)  {
+    public void setValueEquivalent(Double valueEquivalent) {
 
     }
 
