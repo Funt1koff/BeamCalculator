@@ -22,18 +22,18 @@ therefore, with its help, it is possible to solve problems that theoretical mech
 
 ### Types of load
 #### 1) Concentrated force (F)
-The simplest load. Has an application coordinate and a value.
-#![Concentrated force(F)](https://isopromat.ru/wp-content/uploads/is-1172.png)
+#####The simplest load. Has an application coordinate and a value.
+![Concentrated force(F)](https://isopromat.ru/wp-content/uploads/is-1172.png)
 #### 2) Concentrated moment (m)
-The simplest a couple of forces. Has an application coordinate and a value.
-#![Concentrated moment (m)](https://isopromat.ru/wp-content/uploads/is-1169.png)
+#####The simplest a couple of forces. Has an application coordinate and a value.
+![Concentrated moment (m)](https://isopromat.ru/wp-content/uploads/is-1169.png)
 #### 3) Distributed rectangular load (q)
-The force is set as a load per unit length. It has a start coordinate and an end coordinate. 
-The formulas calculate the equivalent concentrated force and the coordinate of the pressure center.
-#![Distributed rectangular load (m)](https://isopromat.ru/wp-content/uploads/is-1175.png)
+#####The force is set as a load per unit length. It has a start coordinate and an end coordinate. 
+#####The formulas calculate the equivalent concentrated force and the coordinate of the pressure center.
+![Distributed rectangular load (m)](https://isopromat.ru/wp-content/uploads/is-1175.png)
 #### 3) Distributed triangular load (q)
-The force is set as a load per unit length. It has a start coordinate and an end coordinate.
-The formulas calculate the equivalent concentrated force and the coordinate of the pressure center.
+#####The force is set as a load per unit length. It has a start coordinate and an end coordinate.
+#####The formulas calculate the equivalent concentrated force and the coordinate of the pressure center.
 #![Distributed rectangular load (m)](https://www.teoretmeh.ru/Stattest/c9_05.gif)
 
 ## Author
