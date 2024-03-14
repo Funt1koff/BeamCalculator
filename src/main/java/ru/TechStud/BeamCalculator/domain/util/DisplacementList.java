@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import ru.TechStud.BeamCalculator.domain.displacement.Displacement;
 import ru.TechStud.BeamCalculator.domain.displacement.FullDisplacement;
 import ru.TechStud.BeamCalculator.domain.displacement.StandardDisplacement;
+import ru.TechStud.BeamCalculator.domain.section.Section;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -52,11 +53,19 @@ public class DisplacementList {
         return fullDisplacements;
     }
 
-    public Integer getCountDisplacements() {
+    public List<Section> getDisplacementSections() {
+
+        List<Section> sections = new ArrayList<>();
+
         if (displacementContainer.get(STANDARD).isEmpty())
-            return displacementContainer.get(FULL).size();
-        else
-            return displacementContainer.get(STANDARD).size();
+            sections.add(new Section(
+                    getFullDisplacement().get(0).getCoordinate(), false, true
+            ));
+        else sections.add(new Section(
+                getStandardDisplacement().get(0).getCoordinate(), false, true
+        ));
+
+        return sections;
     }
 
     private Integer filterByType(Displacement displacement) {

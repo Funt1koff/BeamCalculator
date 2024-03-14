@@ -10,7 +10,8 @@ public class DistributedTriangle extends LoadDistributed {
                                Double coordinateEnd) {
         super(valueOnUnitLength, coordinateStart, coordinateEnd);
         super.setIDENTIFIER(DISTRIBUTED_TRIANGLE);
-        super.setCoordinateCenterMass(0.666667 * (coordinateEnd - coordinateStart));
+        super.setCoordinateCenterMass(
+                coordinateStart + 0.666667 * (coordinateEnd - coordinateStart));
         super.setValueEquivalent(0.5 * valueOnUnitLength * (coordinateEnd - coordinateStart));
     }
 

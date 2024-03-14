@@ -1,7 +1,6 @@
 package ru.TechStud.BeamCalculator.domain.load;
 
 import lombok.Data;
-import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 
 import java.util.Objects;

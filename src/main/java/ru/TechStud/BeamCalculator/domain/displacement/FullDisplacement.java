@@ -1,7 +1,6 @@
 package ru.TechStud.BeamCalculator.domain.displacement;
 
 import lombok.Data;
-import org.springframework.beans.factory.annotation.Autowired;
 
 @Data
 public class FullDisplacement implements Displacement {
@@ -14,7 +13,6 @@ public class FullDisplacement implements Displacement {
         IDENTIFIER = FULL;
     }
 
-    @Autowired
     public FullDisplacement(boolean isLeft) {
         this.isLeft = isLeft;
         IDENTIFIER = FULL;

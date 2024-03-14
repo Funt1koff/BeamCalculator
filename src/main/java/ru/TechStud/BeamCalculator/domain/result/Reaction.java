@@ -1,13 +1,12 @@
 package ru.TechStud.BeamCalculator.domain.result;
 
-import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 @Data
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 @AllArgsConstructor
+@ToString
+@EqualsAndHashCode
 public class Reaction {
 
     private Double coordinate;
