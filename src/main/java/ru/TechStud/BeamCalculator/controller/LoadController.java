@@ -11,13 +11,14 @@ import ru.TechStud.BeamCalculator.service.LoadService;
 import java.util.List;
 
 @RestController
+@RequestMapping("/load")
 @AllArgsConstructor
 public class LoadController {
 
     private final LoadService loadService;
 
     @PostMapping
-    public ResponseEntity<Load> create(@RequestBody LoadDTO dto)    {
+    public ResponseEntity<Load> create(@RequestBody LoadDTO dto) {
         return new ResponseEntity<>(loadService.create(dto), HttpStatus.OK);
     }
 
@@ -27,12 +28,12 @@ public class LoadController {
     }
 
     @PutMapping
-    public ResponseEntity<Load> update(@RequestBody Load load)  {
+    public ResponseEntity<Load> update(@RequestBody Load load) {
         return new ResponseEntity<>(loadService.update(load), HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")
-    public HttpStatus delete(@PathVariable Long id)  {
+    public HttpStatus delete(@PathVariable Long id) {
         loadService.delete(id);
         return HttpStatus.OK;
 

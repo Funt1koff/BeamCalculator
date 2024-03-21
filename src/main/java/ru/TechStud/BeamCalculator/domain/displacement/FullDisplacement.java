@@ -1,16 +1,15 @@
 package ru.TechStud.BeamCalculator.domain.displacement;
 
 import lombok.Data;
-import lombok.RequiredArgsConstructor;
 
 @Data
-public class FullDisplacement implements Displacement   {
+public class FullDisplacement implements Displacement {
 
     private Integer IDENTIFIER;
     private Boolean isLeft = true;
     private Double coordinate = 0.0;
 
-    public FullDisplacement()   {
+    public FullDisplacement() {
         IDENTIFIER = FULL;
     }
 
