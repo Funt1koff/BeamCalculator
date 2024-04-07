@@ -1,0 +1,13 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:6552/postgres
+    username: ucd
+    password: Qwerty111++
+  application:
+    name: Beam Calculator
+  jpa:
+    hibernate:
+      ddl-auto: create
+
+server:
+  port: 1337
