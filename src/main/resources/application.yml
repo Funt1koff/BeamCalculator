@@ -1,6 +1,6 @@
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:6552/postgres
+    url: jdbc:postgresql://localhost:6552/BeamCalculator
     username: ucd
     password: Qwerty111++
   application:

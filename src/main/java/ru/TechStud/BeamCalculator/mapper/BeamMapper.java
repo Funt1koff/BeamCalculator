@@ -16,4 +16,12 @@ public interface BeamMapper {
     List<Beam> toEntities(List<BeamDTO> dtos);
 
     List<BeamDTO> toDTOs(List<Beam> entities);
+
+    ru.TechStud.BeamCalculator.domain.beam.Beam toDomain(BeamDTO dto);
+
+    ru.TechStud.BeamCalculator.domain.beam.Beam toDomain(Beam entity);
+
+    BeamDTO toDTO(ru.TechStud.BeamCalculator.domain.beam.Beam domain);
+
+    Beam toEntity(ru.TechStud.BeamCalculator.domain.beam.Beam domain);
 }
